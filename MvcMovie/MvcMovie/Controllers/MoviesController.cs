@@ -133,6 +133,10 @@ namespace MvcMovie.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Movie movie = db.Movies.Find(id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
             db.Movies.Remove(movie);
             db.SaveChanges();
             return RedirectToAction("Index");
